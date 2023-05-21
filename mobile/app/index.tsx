@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
-// import { useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 import { ImageBackground, View, Text, TouchableOpacity } from 'react-native'
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
 import { styled } from 'nativewind'
@@ -29,7 +29,7 @@ const discovery = {
 }
 
 export default function App() {
-  // const router = useRouter()
+  const router = useRouter()
 
   const [hasLoadedFonts] = useFonts({
     Roboto_400Regular,
@@ -57,19 +57,19 @@ export default function App() {
 
     await SecureStore.setItemAsync('token', token)
 
-    console.log('testeeee')
-    // router.push('/memories')
+    router.push('/memories')
   }
 
   useEffect(() => {
+    // console.log(response)
+
     // console.log(
     //   makeRedirectUri({
     //     scheme: 'nlwspacetime',
     //   }),
     // )
-    console.log(response)
+
     if (response?.type === 'success') {
-      console.log('teste')
       const { code } = response.params
 
       handleGithubOAuthCode(code)
